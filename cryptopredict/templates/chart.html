@@ -1,0 +1,11 @@
+{% load static %}
+{% for list in chart %}   
+<div class="chartdiv">
+    <img style="max-width:100px; padding:50px" src="{{ list.image.url}}" >
+    <h4> {{list.title}}</h4>
+    <br>
+    <p>{{list.description}}</p>
+    
+</div>
+{% endfor %}
+    
