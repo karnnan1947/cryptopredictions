@@ -510,3 +510,8 @@ form a{
     background-color:#0a0909;
     border-radius: .3rem;
 }
+.rows{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

@@ -2,12 +2,13 @@
 {% for list in chart %}   
 <div class="chartdiv" >
     
-    <div  style="height:280px; width:420px">
-      <img src="{{ list.image.url}}"  style="height:280px; width:420px">
-      <h4 style="text-align:center"> {{list.title}}</h4>
+    <div class="rows">
+        <div class="col-2">
+          <img src="{{ list.image.url}}"  style="height:280px; width:420px">
+          <h4 style="text-align:center"> {{list.title}}</h4>
+        </div>
+      <p style="flex:2; padding-left:20px       ">{{ list.description }}</p>
     </div>
-   
-    
 </div>
 {% endfor %}
     
