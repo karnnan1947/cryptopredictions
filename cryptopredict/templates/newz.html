@@ -1,0 +1,17 @@
+{% extend 'blank.html' %}
+{% block content %}
+
+<div class="container2">
+    {% for x in api.Data %}
+    <div class="col-sm">
+        <div class="card" style="width: 18 rem;">
+            <img src="{{x.imageurl}}" class="card-img-top" alt="{{ x.source }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ x.title }}</h5>
+                <p class="card-Text"> {{x.body }}</p>
+                <a href="{{x.url}}" class="btn btn-secodary"> Read More ...</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
