@@ -1,16 +1,14 @@
 {% extends 'blank.html' %}
 {% load static %}
 {% block content %}
-<div class="account-page">
-    <div class="container">
+<div class="account-page col-12">
+    <div class="containers">
         <div class="row">
               <!-- <div class"col-2">
                   <img src="{% static 'images/image1.png' %}" width="100%">
                </div>-->
-                <div class="col-2">
-                    <p>haiiii</p>
                     <div class="form-container">
-                        <div class="form-btn">
+                        <div class="form-bt">
                             <span onclick="login()">Login</span>
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
@@ -26,17 +24,18 @@
                             {% csrf_token %}
                             <input type="text" name="username" maxlength="10" minlength="4" required placeholder="Username">
                             <input type="password" name="password" minlenth="6" required placeholder="Password">
-                            <button type="submit" name="login" class="btn">Login</button>
+                            <button type="submit" name="login" class="bt">Login</button>
+                            
                          </form>
                          <form id="RegForm" method="post" enctype="multipart/form-data" >
                             {% csrf_token %}
                             <input type="text" name="username" maxlength="10" minlength="4" required placeholder="Username">
                             <input type="email" name="email" required placeholder="Email">
                             <input type="password" name="password" required placeholder="Password">
-                            <button type="submit" name="register" class="btn">Register</button>
+                            <button type="submit" name="register" class="bt">Register</button>
                          </form>     
                    </div>
-             </div>
+             
         </div>
     </div>
 </div>

@@ -5,35 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cryptopredict</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700&display=swap"
      rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
 </head>
 <body>
     <div class="header">
-        <div class="container">
+        <div class="containers">
             {% block menu %}
             {% include 'menu.html' %}
             {% endblock menu %}
-            {% block banner %}
-            {% endblock banner %}
             {% block content %}
             {% endblock content %}
         </div>
-           
-    </div>
+        {% block banner %}
+        {% endblock banner %}
+    
     <!-- Footer -->
-     <div class="footer">
-        <div class="container">
+     <div class="container-fluid bg-dark h-10" >
+        <div class="py-5">
             <div class="row">
-                <div class="footer-col-1">
+                <div class="col-2">
+                    <h5 class="text-light offset-2">Section</h5>
 
                 </div>
+                <div class="col-4 offset-2">
+                    <form>
+                        <div class="container mt-4 ">
+                            <div class="d-flex col-12">
+                           <h5 class="text-light me-3"> Feedback</h5>
+                           <input id="" type="text" class="form-control me-2 w-80">
+                           <button class="btn btn-primary btn-outline-success w-80" type="button">Submit</button>
+                           </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <p class="copyright">Copyright 2025</p>
+            <div class="d-flex justify-content-center align-items-center py-4 my-4 border-top ">
+              <p class="text-light">@Copyright 2025</p>
+            </div>
         </div>
      </div>
+    </div>
      <script>
         var MenuItem = document.createElementById("MenuItem")
         MenuItems.style.maxHeight = "0px";
@@ -46,6 +62,10 @@
             }
         }
      </script>
+     
+<!-- Bootstrap.js-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+ <script src="{% static 'js/bootstrap.js' %}"></script>
     
 </body>
 </html>

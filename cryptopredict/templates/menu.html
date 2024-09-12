@@ -1,8 +1,5 @@
 {% load static %}
-<div class="navbar">
-    <div class="logo">
-        <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" alt="logo" width="125px"></a>
-    </div>
+<div class="navbars">
     <nav>
         <h3>{{ user.user_profile }}</h3>
         <ul id="MenuItems">
@@ -13,12 +10,11 @@
             <li><a href="{% url 'newz' %}"> News</a></li>
            <li><a href=""> portfolio</a></li>
            <li><a href="{% url 'charts' %}"> Charts</a></li>
-            <a href=""><img src="{% static 'images/cart.png' %}" width="30px" height="30px"></a>
             <li><a href="{% url 'signout' %}"> logout</a></li>
 
             {% endif %}
 
         </ul>
     </nav>
-    <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+   <!-- <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()"> -->
 </div>

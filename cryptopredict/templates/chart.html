@@ -1,14 +1,31 @@
-{% load static %}
-{% for list in chart %}   
-<div class="chartdiv" >
-    
-    <div class="rows">
-        <div class="col-2">
-          <img src="{{ list.image.url}}"  style="height:280px; width:420px">
-          <h4 style="text-align:center"> {{list.title}}</h4>
-        </div>
-      <p style="flex:2; padding-left:20px       ">{{ list.description }}</p>
+{% load static %} 
+<div class="container">
+  <div class="container-fluid" style="padding:20px; padding-top:30px">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+        <h2 class="mb-4 display-5 text-center">Crypto Charts</h2>
+        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+      </div>
     </div>
+  </div>
+  {% for list in chart %}  
+  <div class="container col-12 card-hover-effect" style="background-color:rgb(96, 90, 90);">
+    <div class="card mb-3 p-2" style="background-color:rgb(96, 90, 90);">
+      <div class="row g-0">
+        <div class="col-4">
+          <img src="{{ list.image.url}}" class="img-fluid rounded-start col-11 py-2" style=" min-height:300px; max-height: 300px; max-width: 500px;" alt="image missing">
+        </div>
+        <div class="col-md-8">
+           <div class="card-body">
+            <h4 class="card-title text-center" style="color:red;"> {{list.title}}</h4>
+            <p class="card-texts" style="color:white;">{{ list.description }}</p>
+          </div>
+    </div>
+    </div>
+  </div>
+  </div>
+    {% endfor %}
+
 </div>
-{% endfor %}
+  
     
