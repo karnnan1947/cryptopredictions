@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from . models import users
+from . forms import FeedbackForm
 
 # Create your views here.
 def signout(request):
@@ -12,13 +13,22 @@ def signout(request):
 def index(request):
     return render(request,'index.html')
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/account')
 def homes(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.user = request.user  # Automatically assign the logged-in user
+            feedback.save()
     return render(request,'home.html')
 
 def account(request):
     context={}
     if request.POST and 'register' in request.POST:
-        context['register']=True
+        context['register']=True   
         try:
             username=request.POST.get('username')
             password=request.POST.get('password')

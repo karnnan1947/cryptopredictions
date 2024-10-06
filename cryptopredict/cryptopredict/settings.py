@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+   # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'charts',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
@@ -120,12 +121,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 #STATIC_URL = 'static/'
-STATIC_URL = 'cryptopredict/'
-STATICFILES_DIRS=[
-    BASE_DIR/ "static/"
+#STATIC_URL = 'cryptopredict/'
+#STATICFILES_DIRS=[
+#    BASE_DIR/ "static/"
+#]
+#MEDIA_URL="media/"
+#MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/cryptopredict/'  # Use a trailing slash
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")  # Correctly join paths
 ]
-MEDIA_URL="media/"
-MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory for collectstatic
+
+# Media files
+MEDIA_URL = '/media/'  # Use a trailing slash
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

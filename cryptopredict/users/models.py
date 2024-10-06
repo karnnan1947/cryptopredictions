@@ -7,3 +7,10 @@ class users(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,related_name='user_profile')
     def __str__(self) -> str:
         return self.name
+
+class Feedback(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    feedback=models.TextField()
+
+    def __str__(self) -> str:
+        return self.user.username
