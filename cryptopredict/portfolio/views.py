@@ -58,6 +58,27 @@ def DeleteBuyPrices(buyprices, quantity, user, cryptoname, day, time):
 @login_required(login_url='/account')
 def portfolio(request):
     today = date.today()  # Define today's date
+    user_cryptos = CryptoWallet.objects.filter(user=request.user)
+    user_prices = BuyPrice.objects.filter(user=request.user)
+        # Calculate current values and profit/loss
+    current_crypto_values = []
+    profit_loss_all = {}
+
+    for i in user_prices:
+        profit_loss = (i.cryptoQuantity * get_coin_price(i.cryptoName)) - (i.cryptoQuantity * i.price)
+        profit_loss_all[i.cryptoName] = profit_loss
+
+    for i in user_cryptos:
+        current_value = round(get_coin_price(i.cryptoName) * i.cryptoQuantity, 5)
+        current_crypto_values.append(current_value)
+
+        # Prepare the final table for display
+    names = [i.cryptoName for i in user_cryptos]
+    quantities = [i.cryptoQuantity for i in user_cryptos]
+    values_list = list(profit_loss_all.values())
+    portfolio_summary = sum(current_crypto_values)
+
+    final_table = zip(names, quantities, current_crypto_values, values_list)
     
     if request.method == 'POST':
         # Handle Buy Request
@@ -94,10 +115,9 @@ def portfolio(request):
             curr_time = datetime.now().time()
             CollectBuyPrices(request.user, today, curr_time, buying_coin, cryptoQuantityBought, buying_coin_exchange)
 
-            return redirect('portfolio')
-
+            return redirect('portfolio') 
         # Handle Sell Request
-        if request.POST.get('cryptoNameSell') and request.POST.get('cryptoQuantitySell'):
+        elif request.POST.get('cryptoNameSell') and request.POST.get('cryptoQuantitySell'):
             selling_coin = request.POST.get('cryptoNameSell')
             selling_quantity = float(request.POST.get('cryptoQuantitySell'))
 
@@ -120,37 +140,15 @@ def portfolio(request):
                 curr_time = datetime.now().time()
                 DeleteBuyPrices(user_prices, selling_quantity, request.user, selling_coin, today, curr_time)
 
-                return redirect('portfolio')
-            
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            feedback = form.save(commit=False)
-            feedback.user = request.user  # Automatically assign the logged-in user
-            feedback.save()    
+                return redirect('portfolio')  
+        else:
+            form = FeedbackForm(request.POST)
+            if form.is_valid():
+                feedback = form.save(commit=False)
+                feedback.user = request.user  # Automatically assign the logged-in user
+                feedback.save()     
 
-    # Get the user's portfolio data
-    user_cryptos = CryptoWallet.objects.filter(user=request.user)
-    user_prices = BuyPrice.objects.filter(user=request.user)
-
-    # Calculate current values and profit/loss
-    current_crypto_values = []
-    profit_loss_all = {}
-
-    for i in user_prices:
-        profit_loss = (i.cryptoQuantity * get_coin_price(i.cryptoName)) - (i.cryptoQuantity * i.price)
-        profit_loss_all[i.cryptoName] = profit_loss
-
-    for i in user_cryptos:
-        current_value = round(get_coin_price(i.cryptoName) * i.cryptoQuantity, 5)
-        current_crypto_values.append(current_value)
-
-    # Prepare the final table for display
-    names = [i.cryptoName for i in user_cryptos]
-    quantities = [i.cryptoQuantity for i in user_cryptos]
-    values_list = list(profit_loss_all.values())
-    portfolio_summary = sum(current_crypto_values)
-
-    final_table = zip(names, quantities, current_crypto_values, values_list)
+    # Get the user's portfolio dat
 
 
     return render(request, "portfolio.html", {
