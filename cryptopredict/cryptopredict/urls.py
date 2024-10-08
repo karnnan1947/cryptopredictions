@@ -25,5 +25,6 @@ urlpatterns = [
     path('chart/',include('charts.urls')),
     path('new/',include('news.urls')),
     path('portfolio/',include('portfolio.urls')),
+    path('predicts/',include('predict.urls')),
 ]
 urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
