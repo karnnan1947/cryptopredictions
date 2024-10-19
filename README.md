@@ -42,7 +42,7 @@ $  source bin/activate
 
 **3. Clone this project**
 ```
-$  git clone https://github.com/karnnan1947/cart.git
+$  git clone https://github.com/karnnan1947/cryptopredictions.git
 ```
 
 Then, Enter the project
