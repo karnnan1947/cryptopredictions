@@ -1,0 +1,22 @@
+from pycoingecko import CoinGeckoAPI
+
+# Initialize the CoinGeckoAPI client
+coingecko = CoinGeckoAPI()
+
+def get_multiple_coin_prices(coins):
+    try:
+        # Replace 'trx' with 'tron' (correcting coin ID if needed)
+        coins = [coin.lower() if coin.lower() != 'trx' else 'tron' for coin in coins]
+        
+        # Fetch prices for all the coins in USD
+        prices = coingecko.get_price(ids=','.join(coins), vs_currencies='usd')
+        
+        # Return a dictionary with coin prices
+        return {coin: prices.get(coin.lower() if coin.lower() != 'trx' else 'tron', {}).get('usd', None) for coin in coins}
+    
+    except Exception as e:
+        print(f"Error fetching multiple coin prices: {e}")
+        return {}
+
+# Example usage
+print(get_multiple_coin_prices(['ethereum', 'trx', 'bitcoin']))  

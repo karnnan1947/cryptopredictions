@@ -14,7 +14,7 @@ class Coin(models.Model):
         return self.c_name
 
 class Duration(models.Model):
-    time=models.IntegerField(unique=True)
+    time=models.CharField(max_length=3,unique=True)
 
     def __str__(self):
         return str(self.time)    
