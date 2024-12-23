@@ -47,7 +47,8 @@ $  git clone https://github.com/karnnan1947/cryptopredictions.git
 
 Then, Enter the project
 ```
-$  cd crypt
+$ activate environment crypt
+$ cd cryptopredict
 ```
 
 **4. Install Requirements from ‘requirements.txt’**
