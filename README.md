@@ -45,9 +45,10 @@ $  source bin/activate
 $  git clone https://github.com/karnnan1947/cryptopredictions.git
 ```
 
-Then, Enter the project
+Then, 
 ```
 $ activate environment crypt
+Enter the project
 $ cd cryptopredict
 ```
 

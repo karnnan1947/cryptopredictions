@@ -55,19 +55,18 @@ def predicts(request):
         formc = SelectDuration(request.POST)
         form_feedback = FeedbackForm(request.POST)
         if forma.is_valid():
-            print("Selected algorithm:", forma.cleaned_data['item'])
+            print("Selected algorithm:", forma.cleaned_data['algorithm'])
         if formb.is_valid():
-            print("Selected coin:", formb.cleaned_data['item'])
+            print("Selected coin:", formb.cleaned_data['coin'])
         if formc.is_valid():
-            print("Selected duration:", formc.cleaned_data['item'])
+            print("Selected duration:", formc.cleaned_data['duration'])
             
 
 
         if forma.is_valid() and formb.is_valid() and formc.is_valid():
-            print('item')
-            selected_item = forma.cleaned_data['item']  # Ensure field names match your form
-            selected_coin = formb.cleaned_data['item']
-            selected_duration = formc.cleaned_data['item']
+            selected_item = forma.cleaned_data['algorithm']  # Ensure field names match your form
+            selected_coin = formb.cleaned_data['coin']
+            selected_duration = formc.cleaned_data['duration']
             print("Algorithm:", selected_item.al_name)
             print("Coin:", selected_coin.c_name)
             print("Duration:", selected_duration.time)
@@ -98,12 +97,14 @@ def predicts(request):
             new_data = df[['open', 'high', 'low', 'volume']].tail(1)
             actual_close = df['close'].tail(1).values[0]
             predicted_close = model.predict(new_data)[0]
+            predicted_clos=str(predicted_close)[:8]
 
             print(f"New data for prediction:\n{new_data}")
             print(f"Actual closed price: {actual_close}")
             print(f"Predicted close price: {predicted_close}")
+            print(type(predicted_close))
         else:
-            predicted_close = None
+            predicted_clos = None
 
         # Save feedback if valid
         if form_feedback.is_valid():
@@ -117,5 +118,5 @@ def predicts(request):
         'formb': formb,
         'formc': formc,
         'form': form_feedback,
-        'predict': predicted_close
+        'predict': predicted_clos
     })
