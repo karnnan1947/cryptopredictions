@@ -23,7 +23,7 @@ def homes(request):
             feedback = form.save(commit=False)
             feedback.user = request.user  # Automatically assign the logged-in user
             feedback.save()
-    return render(request,'home.html')
+    return render(request,'home.html',{'form':FeedbackForm})
 
 def account(request):
     context={}

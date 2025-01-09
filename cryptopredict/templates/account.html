@@ -3,6 +3,18 @@
 {% block content %}
 <div class="account-page col-12">
     <div class="containers">
+        {% if messages %}
+                    <div class="alert alert-dismissible fade show" role="alert">
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                                <div class="d-flex justify-content-center align-items-center" >
+                                    {{ message }}
+                                  </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
         <div class="row">
               <!-- <div class"col-2">
                   <img src="{% static 'images/image1.png' %}" width="100%">
@@ -15,11 +27,11 @@
                             
                         </div>
                         <br>
-                        {% if messages %}
+                       <!-- {% if messages %}
                            {% for m in messages %}
                                {{m}}
                             {% endfor %}
-                         {% endif %}
+                         {% endif %}-->
                          <form id="LoginForm" method="post" encrype="multipart/form-data">
                             {% csrf_token %}
                             <input type="text" name="username" maxlength="10" minlength="4" required placeholder="Username">

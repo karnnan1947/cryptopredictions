@@ -6,6 +6,8 @@ import pandas as pd
 from datetime import datetime
 import requests
 from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor
 from django.conf import settings
 
 # Utility function to convert a date string to milliseconds
@@ -47,6 +49,7 @@ def predicts(request):
     forma = Selectalgorithm()
     formb = SelectCoin()
     formc = SelectDuration()
+    predicted_clos=''
     predicted_close=''
 
     if request.method == 'POST':
@@ -89,22 +92,59 @@ def predicts(request):
             df = pd.read_csv(file_path)
             X = df[['open', 'high', 'low', 'volume']]
             y = df['close']
+            print(type(selected_item))
+            if str(selected_item) == 'MLR': 
+                model = LinearRegression()
+                model.fit(X, y)
 
-            model = LinearRegression()
-            model.fit(X, y)
+                # Prepare prediction
+                new_data = df[['open', 'high', 'low', 'volume']].tail(1)
+                actual_close = df['close'].tail(1).values[0]
+                predicted_close = model.predict(new_data)[0]
+                predicted_clos=str(predicted_close)[:8]
 
-            # Prepare prediction
-            new_data = df[['open', 'high', 'low', 'volume']].tail(1)
-            actual_close = df['close'].tail(1).values[0]
-            predicted_close = model.predict(new_data)[0]
-            predicted_clos=str(predicted_close)[:8]
+                print(f"New data for prediction:\n{new_data}")
+                print(f"Actual closed price: {actual_close}")
+                print(f"Predicted close price: {predicted_close}")
+                print(type(predicted_close))
+            elif str(selected_item) == 'BOOST':
+                # Train Gradient Boosting Regressor model
+                model = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+                model.fit(X, y)
 
-            print(f"New data for prediction:\n{new_data}")
-            print(f"Actual closed price: {actual_close}")
-            print(f"Predicted close price: {predicted_close}")
-            print(type(predicted_close))
-        else:
-            predicted_clos = None
+                # Get the most recent row of features for prediction
+                new_data = df[['open', 'high', 'low', 'volume']].tail(1)
+                print(f"New data for prediction:\n{new_data}")
+
+                # Actual close price for the same row
+                n2 = df['close'].tail(1)
+                print(f"Actual closed price: {n2.values[0]}")
+                print('GradientBoot')
+                # Predict the close price using the features
+                predicted = model.predict(new_data)
+                print(f"Predicted close price: {predicted[0]}")
+                predicted_close=predicted[0]
+                predicted_clos=str(predicted_close)[:8]
+            elif str(selected_item) == 'DECISION':
+                # Train Random Forest Regressor model
+                model = RandomForestRegressor(n_estimators=100, random_state=42)  # You can adjust n_estimators or other hyperparameters
+                model.fit(X, y)
+
+                # Get the most recent row of features for prediction
+                new_data = df[['open', 'high', 'low', 'volume']].tail(1)
+                print(f"New data for prediction:\n{new_data}")
+
+                # Actual close price for the same row
+                n2 = df['close'].tail(1)
+                print(f"Actual closed price: {n2.values[0]}")
+                print('decision')
+                # Predict the close price using the features
+                predicted = model.predict(new_data)
+                print(f"Predicted close price: {predicted[0]}")
+                predicted_close=predicted[0]
+                predicted_clos=str(predicted_close)[:8]
+            else:        
+                predicted_clos = None
 
         # Save feedback if valid
         if form_feedback.is_valid():
