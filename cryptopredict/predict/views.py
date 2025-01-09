@@ -5,6 +5,7 @@ import os
 import pandas as pd
 from datetime import datetime
 import requests
+from django.contrib.auth.decorators import login_required
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
@@ -44,6 +45,7 @@ def fetch_historical_data(symbol, interval, start_date, file_path):
     print(f"Data successfully saved to {file_path}")
 
 # View function
+@login_required(login_url='/account')
 def predicts(request):
     form_feedback = FeedbackForm()
     forma = Selectalgorithm()

@@ -17,13 +17,20 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/account')
 def homes(request):
+    # Initialize the form for both GET and POST requests
+    form = FeedbackForm()
+    
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
             feedback = form.save(commit=False)
             feedback.user = request.user  # Automatically assign the logged-in user
             feedback.save()
-    return render(request,'home.html',{'form':FeedbackForm})
+            messages.success(request, "Feedback submitted successfully!")
+            return redirect('homes')  # Redirect to clear the form after submission
+
+    # Always return the form in the context
+    return render(request, 'home.html', {'form': form})
 
 def account(request):
     context={}
@@ -57,7 +64,8 @@ def account(request):
             if user:
                 login(request,user)
                 acc={'user':username}
-                return render(request,'home.html')
+                form = FeedbackForm()
+                return render(request, 'home.html', {'form': form})
             else:
                 messages.error(request,"invalid details")
     return render(request,'account.html',context)                        
