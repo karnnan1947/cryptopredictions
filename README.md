@@ -3,7 +3,7 @@
 
 **2. Create a Virtual Environment and Activate**
 
-Install Virtual Environment First
+Install Virtual Environment First for linux
 ```
 $  pip install virtualenv
 ```
@@ -27,7 +27,7 @@ Activate Virtual Environment
 
 For Windows
 ```
-$  source venv/scripts/activate
+$  venv/scripts/activate
 ```
 
 For Mac

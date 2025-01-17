@@ -122,6 +122,11 @@ form a{
     transform: translatex(100px);
     transition: transform 1s;
 }
+/* Styling for the input-group to ensure consistent alignment */
+.input-group {
+    position: relative;
+    width: 100%;
+}
 /* card hover */
 .card-text {
     max-height: 6em;
@@ -136,4 +141,18 @@ form a{
 .card-hover-effect:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#togglePasswordLogin,
+#togglePasswordRegister {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Ensure the parent container is positioned relative */
+.form-container input[type="password"] {
+    width: 100%; /* Ensure the password field matches the full width */
+    font-size: 14px; /* Match font size for all input fields */
 }

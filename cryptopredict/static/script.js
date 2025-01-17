@@ -1,42 +1,32 @@
-// prediction button functionality
-const hours = 3 * 60 * 1000;
-
-function handleButtonClick() {
-    const button = document.getElementById('predictBtn');
-    button.disabled = true;
-    localStorage.setItem('disableTime', Date.now());
-    button.innerText = "Please wait for 3 hours...";
+//prediction button
+const hours=3*60*1000;
+function handleButtonClick(){
+    const button=document.getElementById('predictBtn');
+    button.disabled=true;
+    localStorage.setItem('disableTime',Date.now());
+    button.innerText="Please wait for 3 hours...";
 }
-
-function checkButtonState() {
-    const disableTime = localStorage.getItem('disableTime');
-    const button = document.getElementById('predictBtn');
-    
-    if (disableTime) {
-        const elapsedTime = Date.now() - disableTime;
-        if (elapsedTime < hours) {
-            button.disabled = true; 
-            button.innerText = "Please wait for 3 hours...";
-        } else {
-            button.disabled = false;
-            button.innerText = "Get Started";
+function checkButtonState(){
+    const disableTime=localStorage.getItem('disableTime');
+    const button=document.getElementById('predictBtn');
+    if(disableTime){
+        const elapsedTime=Date.now()-disableTime;
+        if(elapsedTime < hours){
+            button.disabled=true; 
+            button.innerText="Please wait for 3 hours...";
+        }else{
+            button.disabled=false;S
+            button.innerText="Get Started";
             localStorage.removeItem('disableTime');
         }
     }
 }
 
-// Wait for the DOM to be fully loaded before running the scripts
-document.addEventListener('DOMContentLoaded', function() {
-    // Initial state check for the prediction button
-    checkButtonState();
+// account page
 
-    // Expose handleButtonClick to global scope for the button click
-    window.handleButtonClick = handleButtonClick;
-
-    // Account page functionality
-    const LoginForm = document.getElementById("LoginForm");
-    const RegForm = document.getElementById("RegForm");
-    const Indicator = document.getElementById("Indicator");
+    var LoginForm = document.getElementById("LoginForm");
+    var RegForm = document.getElementById("RegForm");
+    var Indicator = document.getElementById("Indicator");
 
     function register() {
         RegForm.style.transform = "translateX(0px)";
@@ -60,4 +50,3 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(message);
         });
     }
-});

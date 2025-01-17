@@ -42,8 +42,8 @@
                   <h5 class="card-title text-center">Buy cryptos</h5>
                   <form class="" action="" method="post">
                     {% csrf_token %}
-                    Crypto name: <input type="text" name="cryptoNameBuy">
-                    How much dollars u want to invest? <input type="number" step="any" min=0 name="quantityDollarsBuy">
+                    Crypto name: <input type="text" name="cryptoNameBuy" placeholder="ex: Bitcoin" required>
+                    How much dollars u want to invest? <input type="number" step="any" min=0 name="quantityDollarsBuy" placeholder="ex: 10(USDT)" required>
                     <input class="btn btn-primary" type="submit" name="" value="Buy!">
                 </form>
                 </div>
@@ -53,8 +53,8 @@
                     <h5 class="card-title text-center">Sell cryptos</h5>
                     <form class="" action="" method="post">
                         {% csrf_token %}
-                        Crypto name: <input type="text" name="cryptoNameSell">
-                        How much you want to sell? <input type="number" step="any" min=0 name="cryptoQuantitySell">
+                        Crypto name: <input type="text" name="cryptoNameSell" placeholder="ex: Bitcoin" required>
+                        How much you want to sell? <input type="number" step="any" min=0 name="cryptoQuantitySell" placeholder="ex: Quantity" required>
                         <input class="btn btn-primary" type="submit" name="" value="Sell!">
                     </form>
                 </div>

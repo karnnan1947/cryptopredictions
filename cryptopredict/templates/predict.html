@@ -33,28 +33,4 @@
     </div>
     
 </div>
-<script>
-    const hours=3*60*1000;
-function handleButtonClick(){
-    const button=document.getElementById('predictBtn');
-    button.disabled=true;
-    localStorage.setItem('disableTime',Date.now());
-    button.innerText="Please wait for 3 hours...";
-}
-function checkButtonState(){
-    const disableTime=localStorage.getItem('disableTime');
-    const button=document.getElementById('predictBtn');
-    if(disableTime){
-        const elapsedTime=Date.now()-disableTime;
-        if(elapsedTime < hours){
-            button.disabled=true; 
-            button.innerText="Please wait for 3 hours...";
-        }else{
-            button.disabled=false;S
-            button.innerText="Get Started";
-            localStorage.removeItem('disableTime');
-        }
-    }
-}
-</script>
 {% endblock banner %}
