@@ -100,7 +100,7 @@ def portfolio(request):
                 # Get the coin's current exchange price
                 buying_coin_exchange = prices.get(buying_coin.lower())
                 if buying_coin_exchange is None:
-                    messages.error(request, f"Could not fetch the price for {buying_coin}. Please try again later.")
+                    messages.info(request, f"Could not fetch the price for {buying_coin}. Please try again later.")
                     return redirect('portfolio')
 
                 # Calculate how much of the crypto was bought

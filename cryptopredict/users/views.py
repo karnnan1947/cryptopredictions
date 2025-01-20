@@ -40,17 +40,20 @@ def account(request):
             username=request.POST.get('username')
             password=request.POST.get('password')
             email=request.POST.get('email')
-            user=User.objects.create_user(
-                username=username,
-                password=password,
-                email=email
-            )
-            print("userob",user)
-            userloc=users.objects.create(
-                user=user,
-                name=username
-            )
-            messages.success(request,"registration success")
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email already exists. Please use a different email.")
+            else:    
+                user=User.objects.create_user(
+                    username=username,
+                    password=password,
+                    email=email
+                )
+                print("userob",user)
+                userloc=users.objects.create(
+                    user=user,
+                    name=username
+                )
+                messages.success(request,"registration success")
         except Exception as e:
             messages.error(request,"error ")
     else:
