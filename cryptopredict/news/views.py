@@ -18,13 +18,13 @@ def newz(request):
         if not price:
             price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,SOL,XRP,POL,LTC,SHIB,ADA,DOG,TRX&tsyms=USD")
             price = json.loads(price_request.content)
-            cache.set('crypto_prices', price, timeout=600)  # Cache the price data for 10 minutes
+            cache.set('crypto_prices', price, timeout=60)  # Cache the price data for 10 minutes
         
         # Fetch news data if not cached
         if not api:
             api_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN")
             api = json.loads(api_request.content)
-            cache.set('crypto_news', api, timeout=600)  # Cache the news data for 10 minutes
+            cache.set('crypto_news', api, timeout=60)  # Cache the news data for 10 minutes
 
         # Handle form submission
         if request.method == 'POST':
@@ -43,5 +43,6 @@ def newz(request):
             'form': form, 
             'error_message': 'Failed to fetch data from API. Please try again later.'
         })
+        print(api)
 
     return render(request, 'newz.html', {'api': api, 'price': price, 'form': form})

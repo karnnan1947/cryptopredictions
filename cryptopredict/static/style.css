@@ -55,7 +55,8 @@ a{
     transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 .account-page {
-    padding:50px 0;
+    padding-bottom:80px;
+    padding-top:100px;
     background: radial-gradient(#fff,#ffd6d6);
 }
 .form-container{
@@ -155,4 +156,26 @@ form a{
 .form-container input[type="password"] {
     width: 100%; /* Ensure the password field matches the full width */
     font-size: 14px; /* Match font size for all input fields */
+}
+#h1heading{
+    /*text-transform: uppercase;  Makes text uppercase */
+    font-family: 'Poppins', sans-serif; /* Attractive modern font */
+    font-size: 3rem; /* Large font size */
+    font-weight: 700; /* Bold font */
+    color: rgb(20, 114, 116); /* Bright and vibrant color */
+    letter-spacing: 2px; /* Adds spacing between letters */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Subtle shadow effect */
+
+}
+#pcontainer{
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0px 0px 20px rgba(0,0,0,0.2);
+}
+#pbutton{
+    border:none;
+    padding-bottom:30px;
+    color:rgb(192, 234, 201);
+    border-radius:5px;
+    margin-top: 20px;
 }
