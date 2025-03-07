@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-$9$g2v4f%_!b-hve-1+35_s7_4=08irea9-gyu44n8xb!iz-hv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'charts',
     'portfolio',
     'predict',
+    'cryptopredict'
 ]
 
 MIDDLEWARE = [

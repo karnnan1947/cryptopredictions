@@ -4,8 +4,8 @@
 <div class="container d-flex justify-content-center  my-5 " >
     <div class="container col-5" >
         <div class="card shadow-sm br-25" id="pcontainer">
-            <div class="card-header bg-primary text-white text-center">
-                <h5 class="card-title mb-0" style="border-radius:10px">Predict Price</h5>
+            <div class="card-header bg-primary text-white text-center" style="border-radius:10px;">
+                <h5 class="card-title mb-0" >Predict Price</h5>
     
             </div>
             <form method="post">
@@ -19,11 +19,11 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     {% if predict %}
-                    {{predict}} <h6>   USDT</h6>
+                    <span style="padding-right:10px;">{{predict}}</span> <h6>   USDT</h6>
                     {% endif %}
                 </div>
                 <div class="d-flex justify-content-center py-3">
-                    <button id="predictBtn" class="btn btn-primary">Get Stared
+                    <button id="predictBtn" class="btn btn-primary">Predict
                     </button>
                 </div>
             </form>
