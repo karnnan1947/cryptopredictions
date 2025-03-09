@@ -2,7 +2,7 @@
 <div class="navbars">
     <nav>
         <h3>{{ user.user_profile }}</h3>
-        <ul id="MenuItems">
+        <ul style="font-weight:bold; color:black;">
             {% if not user.is_authenticated %}
             <li><a href="{% url 'index' %}">Home</a></li>
             <li><a href="{% url 'account' %}">Account</a></li>

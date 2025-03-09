@@ -3,7 +3,7 @@
 {% block banner %}
 <div class="container d-flex justify-content-center  my-5 " >
     <div class="container col-5" >
-        <div class="card shadow-sm br-25" id="pcontainer">
+        <div class="card shadow-lg br-25" id="pcontainer">
             <div class="card-header bg-primary text-white text-center" style="border-radius:10px;">
                 <h5 class="card-title mb-0" >Predict Price</h5>
     
@@ -29,8 +29,18 @@
             </form>
             
         </div>
-
+        <div class="container mt-5">
+            <p class="mb-3">
+                <strong class="text-dark">Key Takeaway:</strong> 
+                Use (MLR)<span class="text-primary fw-bold">Multi Linear Regression</span> for 
+                <span class="badge bg-success">Stable Markets</span> 
+                and (DECISION)<span class="text-danger fw-bold">Random Forest</span> for 
+                <span class="badge bg-warning text-dark">Volatile Markets</span> 
+                to improve prediction reliability.
+              </p>
+        </div>
     </div>
     
 </div>
+    
 {% endblock banner %}
