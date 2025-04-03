@@ -101,3 +101,5 @@ Command for Linux:
 ```
 $  python3 manage.py createsuperuser
 ```
+
+[CryptoCurrency Price Prediction Demo Video](https://drive.google.com/file/d/1EkajLSd3esur-UQwrIbmV8Vbn4X8sIqY/view)
