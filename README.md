@@ -102,4 +102,9 @@ Command for Linux:
 $  python3 manage.py createsuperuser
 ```
 
+<video width="640" height="360" controls>
+  <source src="https://raw.githubusercontent.com/karnnan1947/cryptopredictions/mains/demovideo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 [CryptoCurrency Price Prediction Demo Video](https://drive.google.com/file/d/1EkajLSd3esur-UQwrIbmV8Vbn4X8sIqY/view)
